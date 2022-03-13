@@ -1,10 +1,10 @@
 databaseChangeLog:
   -  changeSet:
        id:  "001-create"
-       author: "username"
+       author: "EvgenUlianov"
        changes:
          -  createTable:
-              tableName:  project
+              tableName:  customers
               columns:
                 -  column:
                      name:  id
@@ -18,21 +18,24 @@ databaseChangeLog:
                      type:  varchar(255)
                      constraints:
                        nullable:  false
-                       unique: true
                 -  column:
-                     name:  started
-                     type:  boolean
-                     defaultValueBoolean: false
+                     name:  surname
+                     type:  varchar(255)
                      constraints:
                        nullable:  false
                 -  column:
-                     name:  closed
-                     type:  boolean
-                     defaultValueBoolean: false
+                     name:  age
+                     type:  int
+                     defaultValueNumeric: 0
                      constraints:
                        nullable:  false
+                -  column:
+                     name:  phone_number
+                     type:  varchar(255)
+                     constraints:
+                       nullable:  true
          -  createTable:
-              tableName:  users
+              tableName:  orders
               columns:
                 -  column:
                      name:  id
@@ -42,88 +45,24 @@ databaseChangeLog:
                        primaryKey:  true
                        nullable:  false
                 -  column:
-                     name:  username
-                     type:  varchar(255)
-                     constraints:
-                       nullable:  false
-                       unique: true
-                -  column:
-                     name:  role
-                     type:  varchar(255)
-                     constraints:
-                       nullable:  false
-         -  createTable:
-              tableName:  release
-              columns:
-                -  column:
-                     name:  id
-                     type:  bigint
-                     autoIncrement:  true
-                     constraints:
-                       primaryKey:  true
-                       nullable:  false
-                -  column:
-                     name:  version
-                     type:  varchar(31)
-                     constraints:
-                       nullable:  false
-                       unique: true
-                -  column:
-                     name:  begins
+                     name:  date
                      type:  datetime
                      constraints:
                        nullable:  false
                 -  column:
-                     name:  ends
-                     type:  datetime
-                     constraints:
-                       nullable:  false
-         -  createTable:
-              tableName:  task
-              columns:
-                -  column:
-                     name:  id
-                     type:  bigint
-                     autoIncrement:  true
-                     constraints:
-                       primaryKey:  true
-                       nullable:  false
-                -  column:
-                     name:  project
+                     name:  customer_id
                      type:  bigint
                      constraints:
                        nullable:  false
-                       referencedTableName: project
+                       referencedTableName: customers
                 -  column:
-                     name:  name
+                     name:  product_name
                      type:  varchar(255)
                      constraints:
                        nullable:  false
                 -  column:
-                     name:  author
-                     type:  bigint
-                     constraints:
-                       nullable:  false
-                       referencedTableName: users
-                -  column:
-                     name:  executor
-                     type:  bigint
-                     constraints:
-                       nullable:  true
-                       referencedTableName: users
-                -  column:
-                     name:  description
-                     type:  varchar
-                     constraints:
-                       nullable:  false
-                -  column:
-                     name:  release
-                     type:  bigint
-                     constraints:
-                       nullable:  true
-                       referencedTableName: release
-                -  column:
-                     name:  status
-                     type:  varchar(255)
+                     name:  amount
+                     type:  int
+                     defaultValueNumeric: 1
                      constraints:
                        nullable:  false
